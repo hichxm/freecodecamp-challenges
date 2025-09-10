@@ -1,0 +1,16 @@
+{
+  "name": "freecodecamp-daily-coding-challenge",
+  "version": "1.0.0",
+  "description": "Daily freeCodeCamp challenge",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Hichxm",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@jest/globals": "^30.1.2",
+    "jest": "^30.1.3"
+  }
+}
