@@ -64,7 +64,7 @@ describe('daily', () => {
         ])
     })
 
-    test('Custom test', () => {
+    test('Custom test 1', () => {
         expect(daily([
             [10, 11, 12, 13, 14],
             [15, 16, 17, 18, 19],
