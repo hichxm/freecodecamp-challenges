@@ -21,7 +21,7 @@ const daily = (str) => {
     return newStr
 };
 
-assert.deepStrictEqual(daily('hello world'), 'helloo wooorld');
+assert.deepStrictEqual(daily('hello world'), 'helloo woorld');
 assert.deepStrictEqual(daily('freeCodeCamp'), 'freeeCooodeeeeCaaaaamp');
 assert.deepStrictEqual(daily('AEIOU'), 'AEeIiiOoooUuuuu');
 assert.deepStrictEqual(daily('I like eating ice cream in Iceland'), 'I liikeee eeeeaaaaatiiiiiing iiiiiiiceeeeeeee creeeeeeeeeaaaaaaaaaam iiiiiiiiiiin Iiiiiiiiiiiiceeeeeeeeeeeeelaaaaaaaaaaaaaand');
