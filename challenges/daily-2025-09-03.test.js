@@ -1,9 +1,8 @@
-const {expect, test, describe} = require('@jest/globals');
-
+import assert from 'node:assert/strict';
 
 const daily = (sentence, letters) => {
-    letters = letters.toLowerCase().replaceAll(/[^a-zA-Z]/g, "");
-    sentence = sentence.toLowerCase().replaceAll(/[^a-zA-Z]/g, "");
+    letters = letters.toLowerCase().replace(/[^a-zA-Z]/g, "");
+    sentence = sentence.toLowerCase().replace(/[^a-zA-Z]/g, "");
 
     for (const char of sentence) {
         if (!letters.includes(char)) return false;
@@ -16,36 +15,11 @@ const daily = (sentence, letters) => {
     return true;
 };
 
-describe('daily', () => {
-    test('Test 1', () => {
-        expect(daily("hello", "helo")).toStrictEqual(true)
-    })
-
-    test('Test 2', () => {
-        expect(daily("hello", "hel")).toStrictEqual(false)
-    })
-
-    test('Test 3', () => {
-        expect(daily("hello", "helow")).toStrictEqual(false)
-    })
-
-    test('Test 4', () => {
-        expect(daily("hello world", "helowrd")).toStrictEqual(true)
-    })
-
-    test('Test 5', () => {
-        expect(daily("Hello World!", "helowrd")).toStrictEqual(true)
-    })
-
-    test('Test 6', () => {
-        expect(daily("Hello World!", "heliowrd")).toStrictEqual(false)
-    })
-
-    test('Test 7', () => {
-        expect(daily("freeCodeCamp", "frcdmp")).toStrictEqual(false)
-    })
-
-    test('Test 8', () => {
-        expect(daily("The quick brown fox jumps over the lazy dog.", "abcdefghijklmnopqrstuvwxyz")).toStrictEqual(true)
-    })
-})
+assert.deepStrictEqual(daily("hello", "helo"), true);
+assert.deepStrictEqual(daily("hello", "hel"), false);
+assert.deepStrictEqual(daily("hello", "helow"), false);
+assert.deepStrictEqual(daily("hello world", "helowrd"), true);
+assert.deepStrictEqual(daily("Hello World!", "helowrd"), true);
+assert.deepStrictEqual(daily("Hello World!", "heliowrd"), false);
+assert.deepStrictEqual(daily("freeCodeCamp", "frcdmp"), false);
+assert.deepStrictEqual(daily("The quick brown fox jumps over the lazy dog.", "abcdefghijklmnopqrstuvwxyz"), true);

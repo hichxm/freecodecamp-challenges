@@ -1,5 +1,4 @@
-const {expect, test, describe} = require('@jest/globals');
-
+import assert from 'node:assert/strict';
 
 const daily = (str) => {
     const seen = new Set();
@@ -13,32 +12,10 @@ const daily = (str) => {
     return true;
 };
 
-describe('daily', () => {
-    test('Test 1', () => {
-        expect(daily("abc")).toStrictEqual(true)
-    })
-
-    test('Test 2', () => {
-        expect(daily("aA")).toStrictEqual(true)
-    })
-
-    test('Test 3', () => {
-        expect(daily("QwErTy123!@")).toStrictEqual(true)
-    })
-
-    test('Test 4', () => {
-        expect(daily("~!@#$%^&*()_+")).toStrictEqual(true)
-    })
-
-    test('Test 5', () => {
-        expect(daily("hello")).toStrictEqual(false)
-    })
-
-    test('Test 6', () => {
-        expect(daily("freeCodeCamp")).toStrictEqual(false)
-    })
-
-    test('Test 7', () => {
-        expect(daily("!@#*$%^&*()aA")).toStrictEqual(false)
-    })
-})
+assert.deepStrictEqual(daily('abc'), true);
+assert.deepStrictEqual(daily('aA'), true);
+assert.deepStrictEqual(daily('QwErTy123!@'), true);
+assert.deepStrictEqual(daily('~!@#$%^&*()_+'), true);
+assert.deepStrictEqual(daily('hello'), false);
+assert.deepStrictEqual(daily('freeCodeCamp'), false);
+assert.deepStrictEqual(daily('!@#*$%^&*()aA'), false);

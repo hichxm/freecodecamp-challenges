@@ -1,5 +1,4 @@
-const {expect, test, describe} = require('@jest/globals');
-
+import assert from 'node:assert/strict';
 
 const daily = (ipv4) => {
     const parts = ipv4.split('.');
@@ -15,32 +14,10 @@ const daily = (ipv4) => {
     return true;
 };
 
-describe('daily', () => {
-    test('Test 1', () => {
-        expect(daily('192.168.1.1')).toStrictEqual(true)
-    })
-
-    test('Test 2', () => {
-        expect(daily("0.0.0.0")).toStrictEqual(true)
-    })
-
-    test('Test 3', () => {
-        expect(daily('255.01.50.111')).toStrictEqual(false)
-    })
-
-    test('Test 4', () => {
-        expect(daily('255.00.50.111')).toStrictEqual(false)
-    })
-
-    test('Test 5', () => {
-        expect(daily('256.101.50.115')).toStrictEqual(false)
-    })
-
-    test('Test 6', () => {
-        expect(daily('192.168.101.')).toStrictEqual(false)
-    })
-
-    test('Test 7', () => {
-        expect(daily('192168145213')).toStrictEqual(false)
-    })
-})
+assert.deepStrictEqual(daily('192.168.1.1'), true);
+assert.deepStrictEqual(daily('0.0.0.0'), true);
+assert.deepStrictEqual(daily('255.01.50.111'), false);
+assert.deepStrictEqual(daily('255.00.50.111'), false);
+assert.deepStrictEqual(daily('256.101.50.115'), false);
+assert.deepStrictEqual(daily('192.168.101.'), false);
+assert.deepStrictEqual(daily('192168145213'), false);

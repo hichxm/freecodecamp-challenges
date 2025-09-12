@@ -1,4 +1,4 @@
-const {expect, test, describe} = require('@jest/globals');
+import assert from 'node:assert/strict';
 
 const daily = (arr1, arr2) => {
     return arr1
@@ -7,29 +7,8 @@ const daily = (arr1, arr2) => {
         .sort();
 };
 
-describe('daily', () => {
-    test('Test 1', () => {
-        expect(daily(["apple", "banana"], ["apple", "banana", "cherry"]))
-            .toStrictEqual(["cherry"])
-    })
-
-    test('Test 2', () => {
-        expect(daily(["apple", "banana", "cherry"], ["apple", "banana"]))
-            .toStrictEqual(["cherry"])
-    })
-
-    test('Test 3', () => {
-        expect(daily(["one", "two", "three", "four", "six"], ["one", "three", "eight"]))
-            .toStrictEqual(["eight", "four", "six", "two"])
-    })
-
-    test('Test 4', () => {
-        expect(daily(["two", "four", "five", "eight"], ["one", "two", "three", "four", "seven", "eight"]))
-            .toStrictEqual(["five", "one", "seven", "three"])
-    })
-
-    test('Test 5', () => {
-        expect(daily(["I", "like", "freeCodeCamp"], ["I", "like", "rocks"]))
-            .toStrictEqual(["freeCodeCamp", "rocks"])
-    })
-})
+assert.deepStrictEqual(daily(["apple", "banana"], ["apple", "banana", "cherry"]), ["cherry"]);
+assert.deepStrictEqual(daily(["apple", "banana", "cherry"], ["apple", "banana"]), ["cherry"]);
+assert.deepStrictEqual(daily(["one", "two", "three", "four", "six"], ["one", "three", "eight"]), ["eight", "four", "six", "two"]);
+assert.deepStrictEqual(daily(["two", "four", "five", "eight"], ["one", "two", "three", "four", "seven", "eight"]), ["five", "one", "seven", "three"]);
+assert.deepStrictEqual(daily(["I", "like", "freeCodeCamp"], ["I", "like", "rocks"]), ["freeCodeCamp", "rocks"]);

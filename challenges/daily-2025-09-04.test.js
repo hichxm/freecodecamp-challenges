@@ -1,4 +1,4 @@
-const {expect, test, describe} = require('@jest/globals');
+import assert from 'node:assert/strict';
 
 const daily = (str) => {
 
@@ -21,24 +21,8 @@ const daily = (str) => {
     return newStr
 };
 
-describe('daily', () => {
-    test('Test 1', () => {
-        expect(daily('hello world')).toStrictEqual('helloo wooorld')
-    })
-
-    test('Test 2', () => {
-        expect(daily('freeCodeCamp')).toStrictEqual('freeeCooodeeeeCaaaaamp')
-    })
-
-    test('Test 3', () => {
-        expect(daily('AEIOU')).toStrictEqual('AEeIiiOoooUuuuu')
-    })
-
-    test('Test 4', () => {
-        expect(daily('I like eating ice cream in Iceland')).toStrictEqual('I liikeee eeeeaaaaatiiiiiing iiiiiiiceeeeeeee creeeeeeeeeaaaaaaaaaam iiiiiiiiiiin Iiiiiiiiiiiiceeeeeeeeeeeeelaaaaaaaaaaaaaand')
-    })
-
-    test('Custom test 1', () => {
-        expect(daily('Ma femme cest la meilleure du monde')).toStrictEqual('Ma feemmeee ceeeest laaaaa meeeeeeiiiiiiilleeeeeeeeuuuuuuuuureeeeeeeeee duuuuuuuuuuu moooooooooooondeeeeeeeeeeeee')
-    })
-})
+assert.deepStrictEqual(daily('hello world'), 'helloo wooorld');
+assert.deepStrictEqual(daily('freeCodeCamp'), 'freeeCooodeeeeCaaaaamp');
+assert.deepStrictEqual(daily('AEIOU'), 'AEeIiiOoooUuuuu');
+assert.deepStrictEqual(daily('I like eating ice cream in Iceland'), 'I liikeee eeeeaaaaatiiiiiing iiiiiiiceeeeeeee creeeeeeeeeaaaaaaaaaam iiiiiiiiiiin Iiiiiiiiiiiiceeeeeeeeeeeeelaaaaaaaaaaaaaand');
+assert.deepStrictEqual(daily('Ma femme cest la meilleure du monde'), 'Ma feemmeee ceeeest laaaaa meeeeeeiiiiiiilleeeeeeeeuuuuuuuuureeeeeeeeee duuuuuuuuuuu moooooooooooondeeeeeeeeeeeee');

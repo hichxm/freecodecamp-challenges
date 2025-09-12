@@ -1,5 +1,4 @@
-const {expect, test, describe} = require('@jest/globals');
-
+import assert from 'node:assert/strict';
 
 const daily = (hours) => {
     if (hours.length !== 7) throw Error('Invalid hours length');
@@ -16,45 +15,13 @@ const daily = (hours) => {
     return false;
 }
 
-describe('daily', () => {
-    test('Test 1', () => {
-        expect(daily([1, 2, 3, 4, 5, 6, 7])).toStrictEqual(false);
-    })
-
-    test('Test 2', () => {
-        expect(daily([7, 8, 8, 4, 2, 2, 3])).toStrictEqual(false);
-    })
-
-    test('Test 3', () => {
-        expect(daily([5, 6, 6, 6, 6, 6, 6])).toStrictEqual(false);
-    })
-
-    test('Test 4', () => {
-        expect(daily([1, 2, 3, 11, 1, 3, 4])).toStrictEqual(true);
-    })
-
-    test('Test 5', () => {
-        expect(daily([1, 2, 3, 10, 2, 1, 0])).toStrictEqual(true);
-    })
-
-    test('Test 6', () => {
-        expect(daily([3, 3, 5, 8, 8, 9, 4])).toStrictEqual(true);
-    })
-
-    test('Test 7', () => {
-        expect(daily([3, 9, 4, 8, 5, 7, 6])).toStrictEqual(true);
-    })
-
-    test('Custom test 1', () => {
-        expect(daily([5, 6, 6, 6, 6, 6, 7])).toStrictEqual(true);
-    })
-
-    test('Custom test 2', () => {
-        expect(daily([5, 6, 6, 6, 6, 6, 9])).toStrictEqual(true);
-    })
-
-    test('Custom test 2', () => {
-        expect(daily([6, 6, 6, 6, 6, 6, 6])).toStrictEqual(true);
-    })
-
-})
+assert.deepStrictEqual(daily([1, 2, 3, 4, 5, 6, 7]), false);
+assert.deepStrictEqual(daily([7, 8, 8, 4, 2, 2, 3]), false);
+assert.deepStrictEqual(daily([5, 6, 6, 6, 6, 6, 6]), false);
+assert.deepStrictEqual(daily([1, 2, 3, 11, 1, 3, 4]), true);
+assert.deepStrictEqual(daily([1, 2, 3, 10, 2, 1, 0]), true);
+assert.deepStrictEqual(daily([3, 3, 5, 8, 8, 9, 4]), true);
+assert.deepStrictEqual(daily([3, 9, 4, 8, 5, 7, 6]), true);
+assert.deepStrictEqual(daily([5, 6, 6, 6, 6, 6, 7]), true);
+assert.deepStrictEqual(daily([5, 6, 6, 6, 6, 6, 9]), true);
+assert.deepStrictEqual(daily([6, 6, 6, 6, 6, 6, 6]), true);

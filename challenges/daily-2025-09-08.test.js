@@ -1,5 +1,4 @@
-const {expect, test, describe} = require('@jest/globals');
-
+import assert from 'node:assert/strict';
 
 const daily = (str) => {
     let LETTERS = []
@@ -13,32 +12,10 @@ const daily = (str) => {
     return [...LETTERS].join('').toUpperCase()
 };
 
-describe('daily', () => {
-    test('Test 1', () => {
-        expect(daily('Search Engine Optimization')).toStrictEqual('SEO')
-    })
-
-    test('Test 2', () => {
-        expect(daily("Frequently Asked Questions")).toStrictEqual('FAQ')
-    })
-
-    test('Test 3', () => {
-        expect(daily('National Aeronautics and Space Administration')).toStrictEqual('NASA')
-    })
-
-    test('Test 4', () => {
-        expect(daily('Federal Bureau of Investigation')).toStrictEqual('FBI')
-    })
-
-    test('Test 5', () => {
-        expect(daily('For your information')).toStrictEqual('FYI')
-    })
-
-    test('Test 6', () => {
-        expect(daily('By the way')).toStrictEqual('BTW')
-    })
-
-    test('Test 7', () => {
-        expect(daily('An unstoppable herd of waddling penguins overtakes the icy mountains and sings happily')).toStrictEqual('AUHWPOTIMSH')
-    })
-})
+assert.deepStrictEqual(daily('Search Engine Optimization'), 'SEO');
+assert.deepStrictEqual(daily('Frequently Asked Questions'), 'FAQ');
+assert.deepStrictEqual(daily('National Aeronautics and Space Administration'), 'NASA');
+assert.deepStrictEqual(daily('Federal Bureau of Investigation'), 'FBI');
+assert.deepStrictEqual(daily('For your information'), 'FYI');
+assert.deepStrictEqual(daily('By the way'), 'BTW');
+assert.deepStrictEqual(daily('An unstoppable herd of waddling penguins overtakes the icy mountains and sings happily'), 'AUHWPOTIMSH');

@@ -1,5 +1,4 @@
-const {expect, test, describe} = require('@jest/globals');
-
+import assert from 'node:assert/strict';
 
 const daily = (numeral) => {
     const values = {
@@ -18,32 +17,10 @@ const daily = (numeral) => {
     }, 0);
 };
 
-describe('daily', () => {
-    test('Test 1', () => {
-        expect(daily('III')).toStrictEqual(3)
-    })
-
-    test('Test 2', () => {
-        expect(daily("IV")).toStrictEqual(4)
-    })
-
-    test('Test 3', () => {
-        expect(daily('XXVI')).toStrictEqual(26)
-    })
-
-    test('Test 4', () => {
-        expect(daily('XCIX')).toStrictEqual(99)
-    })
-
-    test('Test 5', () => {
-        expect(daily('CDLX')).toStrictEqual(460)
-    })
-
-    test('Test 6', () => {
-        expect(daily('DIV')).toStrictEqual(504)
-    })
-
-    test('Test 7', () => {
-        expect(daily('MMXXV')).toStrictEqual(2025)
-    })
-})
+assert.deepStrictEqual(daily('III'), 3);
+assert.deepStrictEqual(daily('IV'), 4);
+assert.deepStrictEqual(daily('XXVI'), 26);
+assert.deepStrictEqual(daily('XCIX'), 99);
+assert.deepStrictEqual(daily('CDLX'), 460);
+assert.deepStrictEqual(daily('DIV'), 504);
+assert.deepStrictEqual(daily('MMXXV'), 2025);
