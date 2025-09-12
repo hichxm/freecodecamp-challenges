@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict';
+import {strict as assert} from 'node:assert';
 
 const daily = (sentence, letters) => {
     letters = letters.toLowerCase().replace(/[^a-zA-Z]/g, "");

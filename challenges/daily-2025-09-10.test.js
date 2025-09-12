@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict';
+import {strict as assert} from 'node:assert';
 
 const daily = (arr1, arr2) => {
     return arr1

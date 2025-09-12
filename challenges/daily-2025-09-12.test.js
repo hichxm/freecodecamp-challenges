@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict';
+import {strict as assert} from 'node:assert';
 
 const daily = (hours) => {
     if (hours.length !== 7) throw Error('Invalid hours length');
