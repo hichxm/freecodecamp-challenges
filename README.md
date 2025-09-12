@@ -6,6 +6,7 @@ This repository contains daily coding challenge tests. Below is a list of all da
 
 1. Clone this repository
 2. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -13,11 +14,13 @@ npm install
 ## Running Tests
 
 To run all tests:
+
 ```bash
 npm test
 ```
 
 To run a specific test file:
+
 ```bash
 npm test challenges/daily-YYYY-MM-DD.test.js
 ```
@@ -35,4 +38,4 @@ npm test challenges/daily-YYYY-MM-DD.test.js
 | 2025-09-09 | [daily-2025-09-09.test.js](challenges/daily-2025-09-09.test.js) |
 | 2025-09-10 | [daily-2025-09-10.test.js](challenges/daily-2025-09-10.test.js) |
 | 2025-09-11 | [daily-2025-09-11.test.js](challenges/daily-2025-09-11.test.js) |
-
+| 2025-09-12 | [daily-2025-09-12.test.js](challenges/daily-2025-09-12.test.js) |
