@@ -15,13 +15,13 @@ on:
 
 jobs:
   test:
-    name: Test on ${{ matrix.os-version }} with Node ${{ inputs.node-version }}
+    name: Test on ${{ matrix.os-version }} with Node ${{ matrix.node-version }}
     runs-on: ${{ matrix.os-version }}
     strategy:
       fail-fast: false
       matrix:
         os-version: ${{ fromJSON(inputs.os-version) }}
-        node-version: ${{ fromJSON(inputs.os-version) }}
+        node-version: ${{ fromJSON(inputs.node-version) }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
