@@ -1,4 +1,4 @@
-const {readdir} = require('node:fs/promises');
+const {readdir} = require('node:fs').promises;
 const {resolve, join} = require('node:path');
 const {pathToFileURL} = require('node:url');
 
