@@ -1,89 +1,147 @@
 #!/usr/bin/env node
 const fs = require('fs').promises;
 const path = require('path');
-const fileURLToPath = require('url').fileURLToPath;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '..');
 const challengesDir = path.join(repoRoot, 'challenges');
+const workflowsDir = path.join(repoRoot, '.github', 'workflows');
 const readmePath = path.join(repoRoot, 'README.md');
 
 const FILE_REGEX = /^daily-(\d{4})-(\d{2})-(\d{2})\.test\.js$/;
+const REPO_SLUG = 'hichxm/freecodecamp-challenges'; // Used for CI badge links
 
-function buildHeader() {
-    return `# freecodecamp-challenges [![Node.js CI](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test.yaml)
-
-This repository contains daily coding challenge tests. Below is a list of all daily tests with links to their files.
-
-## Getting Started
-
-1. Clone this repository
-2. Install dependencies:
-\n\`\`\`bash
-npm install
-\`\`\`
-
-## Running Tests
-
-To run all tests:
-\n\`\`\`bash
-npm test
-\`\`\`
-
-To run a specific test file:
-\n\`\`\`bash
-npm test challenges/daily-YYYY-MM-DD.test.js
-\`\`\`
-
-## Challenges
-`;
+function buildToc() {
+  return [
+    '## Table of Contents',
+    '- [Getting Started](#getting-started)',
+    '- [Running Tests](#running-tests)',
+    '- [Node Version Matrix](#node-version-matrix)',
+    '- [Challenges](#challenges)',
+    '- [Notes](#notes)',
+    ''
+  ].join('\n');
 }
 
-function buildTable(rows) {
-    const header = [
-        '| Date       | Test File                                                       |',
-        '|------------|-----------------------------------------------------------------|',
-    ];
-    return header.concat(rows).join('\n') + '\n';
+function buildHeader() {
+  return [
+    '# freecodecamp-challenges',
+    '',
+    'This repository contains daily coding challenge tests. Below is a list of all daily tests with links to their files.',
+    '',
+    buildToc(),
+    '## Getting Started',
+    '',
+    '1. Clone this repository',
+    '2. Install dependencies:',
+    '',
+    '```bash',
+    'npm install',
+    '```',
+    '',
+    '## Running Tests',
+    '',
+    'To run all tests:',
+    '',
+    '```bash',
+    'npm test',
+    '```',
+    '',
+    'To run a specific test file:',
+    '',
+    '```bash',
+    'npm test challenges/daily-YYYY-MM-DD.test.js',
+    '```',
+    ''
+  ].join('\n');
+}
+
+function buildNodeVersionMatrix(versions) {
+  const header = [
+    '## Node Version Matrix',
+    '',
+    '| Node Version | Status |',
+    '|--------------|--------|'
+  ];
+  const rows = versions.map(v => {
+    const ver = `${v}.x`;
+    const file = `test-${ver}.yaml`;
+    const badge = `![Node.js CI ${ver}](https://github.com/${REPO_SLUG}/actions/workflows/${file}/badge.svg)`;
+    const link = `https://github.com/${REPO_SLUG}/actions/workflows/${file}`;
+    return `| ${ver} | [${badge}](${link}) |`;
+  });
+  return header.concat(rows).join('\n') + '\n\n';
+}
+
+function buildChallengesSection(rows) {
+  const header = [
+    '## Challenges',
+    '',
+    '| Date       | Test File                                                       |',
+    '|------------|-----------------------------------------------------------------|' 
+  ];
+  return header.concat(rows).join('\n') + '\n';
 }
 
 async function getChallengeRows() {
-    let files = [];
-    try {
-        files = await fs.readdir(challengesDir);
-    } catch (err) {
-        if (err.code === 'ENOENT') {
-            return [];
-        }
-        throw err;
-    }
+  let files = [];
+  try {
+    files = await fs.readdir(challengesDir);
+  } catch (err) {
+    if (err.code === 'ENOENT') return [];
+    throw err;
+  }
 
-    const entries = files
-        .map((name) => {
-            const m = name.match(FILE_REGEX);
-            if (!m) return null;
-            const [_, y, mo, d] = m;
-            const date = `${y}-${mo}-${d}`;
-            return {name, date, sortKey: `${y}${mo}${d}`};
-        })
-        .filter(Boolean);
+  const entries = files
+    .map((name) => {
+      const m = name.match(FILE_REGEX);
+      if (!m) return null;
+      const [_, y, mo, d] = m;
+      const date = `${y}-${mo}-${d}`;
+      return { name, date, sortKey: `${y}${mo}${d}` };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.sortKey.localeCompare(b.sortKey));
 
-    entries.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+  return entries.map((e) => `| ${e.date} | [${e.name}](challenges/${e.name}) |`);
+}
 
-    return entries.map((e) => `| ${e.date} | [${e.name}](challenges/${e.name}) |`);
+async function getNodeVersions() {
+  let files = [];
+  try {
+    files = await fs.readdir(workflowsDir);
+  } catch (err) {
+    return [];
+  }
+  const versions = files
+    .map(f => {
+      const m = f.match(/^test-(\d+)\.x\.yaml$/);
+      return m ? parseInt(m[1], 10) : null;
+    })
+    .filter(v => Number.isInteger(v))
+    .sort((a, b) => b - a); // Descending
+  return versions;
 }
 
 async function main() {
-    const rows = await getChallengeRows();
-    const header = buildHeader();
-    const table = buildTable(rows);
-    const content = `${header}\n${table}`;
-    await fs.writeFile(readmePath, content, 'utf8');
-    console.log(`README generated with ${rows.length} entr${rows.length === 1 ? 'y' : 'ies'}.`);
+  const [rows, versions] = await Promise.all([
+    getChallengeRows(),
+    getNodeVersions()
+  ]);
+
+  const parts = [];
+  parts.push(buildHeader());
+  if (versions.length) {
+    parts.push(buildNodeVersionMatrix(versions));
+  }
+  parts.push(buildChallengesSection(rows));
+  parts.push('\n## Notes\n\n- This README is auto-generated by scripts/generate-readme.js.\n- The Node version matrix is derived from .github/workflows files.');
+
+  const content = parts.join('\n');
+  await fs.writeFile(readmePath, content, 'utf8');
+  console.log(`README generated with ${rows.length} entr${rows.length === 1 ? 'y' : 'ies'}.`);
 }
 
 main().catch((err) => {
-    console.error('Failed to generate README:', err);
-    process.exit(1);
+  console.error('Failed to generate README:', err);
+  process.exit(1);
 });
