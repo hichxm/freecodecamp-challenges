@@ -4,7 +4,8 @@
   "description": "Daily freeCodeCamp challenge",
   "scripts": {
     "test": "node scripts/run-tests.js",
-    "build:readme": "node scripts/generate-readme.js"
+    "build:readme": "node scripts/generate-readme.js",
+    "generate:challenge": "node scripts/generate-challenge.js"
   },
   "keywords": [],
   "author": "Hichxm",

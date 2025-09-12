@@ -55,6 +55,20 @@ npm test challenges/daily-YYYY-MM-DD.test.js
 
 | Date       | Test File                                                       |
 |------------|-----------------------------------------------------------------|
+| 2025-08-20 | [daily-2025-08-20.test.js](challenges/daily-2025-08-20.test.js) |
+| 2025-08-21 | [daily-2025-08-21.test.js](challenges/daily-2025-08-21.test.js) |
+| 2025-08-22 | [daily-2025-08-22.test.js](challenges/daily-2025-08-22.test.js) |
+| 2025-08-23 | [daily-2025-08-23.test.js](challenges/daily-2025-08-23.test.js) |
+| 2025-08-24 | [daily-2025-08-24.test.js](challenges/daily-2025-08-24.test.js) |
+| 2025-08-25 | [daily-2025-08-25.test.js](challenges/daily-2025-08-25.test.js) |
+| 2025-08-26 | [daily-2025-08-26.test.js](challenges/daily-2025-08-26.test.js) |
+| 2025-08-27 | [daily-2025-08-27.test.js](challenges/daily-2025-08-27.test.js) |
+| 2025-08-28 | [daily-2025-08-28.test.js](challenges/daily-2025-08-28.test.js) |
+| 2025-08-29 | [daily-2025-08-29.test.js](challenges/daily-2025-08-29.test.js) |
+| 2025-08-30 | [daily-2025-08-30.test.js](challenges/daily-2025-08-30.test.js) |
+| 2025-08-31 | [daily-2025-08-31.test.js](challenges/daily-2025-08-31.test.js) |
+| 2025-09-01 | [daily-2025-09-01.test.js](challenges/daily-2025-09-01.test.js) |
+| 2025-09-02 | [daily-2025-09-02.test.js](challenges/daily-2025-09-02.test.js) |
 | 2025-09-03 | [daily-2025-09-03.test.js](challenges/daily-2025-09-03.test.js) |
 | 2025-09-04 | [daily-2025-09-04.test.js](challenges/daily-2025-09-04.test.js) |
 | 2025-09-05 | [daily-2025-09-05.test.js](challenges/daily-2025-09-05.test.js) |
