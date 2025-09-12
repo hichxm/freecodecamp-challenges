@@ -24,10 +24,10 @@ jobs:
         node-version: ${{ fromJSON(inputs.os-version) }}
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ inputs.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: ${{ matrix.node-version }}
       - run: npm update
       - run: npm run build --if-present
       - run: npm run test
