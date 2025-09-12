@@ -4,7 +4,7 @@ const daily = (matrix) => {
     const rows = matrix.length;
 
     for (let i = 0; i < rows; i++) {
-        if(matrix[i].length !== rows) throw new Error('Invalid matrix');
+        if (matrix[i].length !== rows) throw new Error('Invalid matrix');
 
         for (let j = 0; j < i; j++) {
             const temp = matrix[i][j];

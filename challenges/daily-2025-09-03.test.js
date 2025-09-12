@@ -6,11 +6,11 @@ const daily = (sentence, letters) => {
     sentence = sentence.toLowerCase().replaceAll(/[^a-zA-Z]/g, "");
 
     for (const char of sentence) {
-        if(!letters.includes(char)) return false;
+        if (!letters.includes(char)) return false;
     }
 
     for (const char of letters) {
-        if(!sentence.includes(char)) return false;
+        if (!sentence.includes(char)) return false;
     }
 
     return true;

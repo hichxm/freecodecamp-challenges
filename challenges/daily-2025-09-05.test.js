@@ -4,12 +4,12 @@ const {expect, test, describe} = require('@jest/globals');
 const daily = (ipv4) => {
     const parts = ipv4.split('.');
 
-    if(parts.length !== 4) return false;
+    if (parts.length !== 4) return false;
 
     for (const part of parts) {
-        if(part.length === 0 || part.length > 3) return false;
-        if(part < 0 || part > 255) return false;
-        if(part.startsWith('0') && part.length > 1) return false;
+        if (part.length === 0 || part.length > 3) return false;
+        if (part < 0 || part > 255) return false;
+        if (part.startsWith('0') && part.length > 1) return false;
     }
 
     return true;

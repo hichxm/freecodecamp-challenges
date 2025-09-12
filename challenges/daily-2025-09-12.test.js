@@ -10,7 +10,7 @@ const daily = (hours) => {
     ) return true;
 
     for (let i = 0; i < 5; i++) {
-        if(hours.slice(i, i + 3).reduce((acc, cur) => acc + cur, 0) / 3 >= 8) return true;
+        if (hours.slice(i, i + 3).reduce((acc, cur) => acc + cur, 0) / 3 >= 8) return true;
     }
 
     return false;

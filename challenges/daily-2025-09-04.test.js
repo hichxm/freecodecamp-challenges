@@ -1,6 +1,5 @@
 const {expect, test, describe} = require('@jest/globals');
 
-
 const daily = (str) => {
 
     let multiplier = 1;
