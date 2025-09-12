@@ -1,6 +1,6 @@
-const {readdir} = require('node:fs').promises;
-const {resolve, join} = require('node:path');
-const {pathToFileURL} = require('node:url');
+const {readdir} = require('fs').promises;
+const {resolve, join} = require('path');
+const {pathToFileURL} = require('url');
 
 const challengesDir = resolve('challenges');
 
