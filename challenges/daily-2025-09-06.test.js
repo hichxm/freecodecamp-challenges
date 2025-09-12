@@ -1,4 +1,4 @@
-const assert = require('node:assert').strict;
+const assert = require('assert').strict;
 
 const daily = (matrix) => {
     const rows = matrix.length;

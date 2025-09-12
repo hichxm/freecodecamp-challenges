@@ -1,4 +1,4 @@
-const assert = require('node:assert').strict;
+const assert = require('assert').strict;
 
 const daily = (hours) => {
     if (hours.length !== 7) throw Error('Invalid hours length');
