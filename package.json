@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Daily freeCodeCamp challenge",
   "scripts": {
-    "test": "jest",
+    "test": "./node_modules/.bin/jest",
     "build:readme": "node scripts/generate-readme.js"
   },
   "keywords": [],
