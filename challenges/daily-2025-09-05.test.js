@@ -1,4 +1,4 @@
-import {strict as assert} from 'node:assert';
+const assert = require('node:assert').strict;
 
 const daily = (ipv4) => {
     const parts = ipv4.split('.');

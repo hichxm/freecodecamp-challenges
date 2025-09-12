@@ -5,10 +5,15 @@ This repository contains daily coding challenge tests. Below is a list of all da
 | Node Version | Status                                                                                                                                                                                                 |
 |--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 24.x         | [![Node.js CI 24.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-24.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-24.x.yaml) |
+| 23.x         | [![Node.js CI 23.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-23.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-23.x.yaml) |
 | 22.x         | [![Node.js CI 22.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-22.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-22.x.yaml) |
+| 21.x         | [![Node.js CI 21.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-21.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-21.x.yaml) |
 | 20.x         | [![Node.js CI 20.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-20.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-20.x.yaml) |
+| 19.x         | [![Node.js CI 19.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-19.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-19.x.yaml) |
 | 18.x         | [![Node.js CI 18.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-18.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-18.x.yaml) |
+| 17.x         | [![Node.js CI 17.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-17.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-17.x.yaml) |
 | 16.x         | [![Node.js CI 16.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-16.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-16.x.yaml) |
+| 15.x         | [![Node.js CI 15.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-15.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-15.x.yaml) |
 | 14.x         | [![Node.js CI 14.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-14.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-14.x.yaml) |
 
 ## Getting Started

@@ -1,4 +1,4 @@
-import {strict as assert} from 'node:assert';
+const assert = require('node:assert').strict;
 
 const daily = (sentence) => {
     return sentence.replace(/\s\s+/g, ' ').split(' ').reverse().join(' ');

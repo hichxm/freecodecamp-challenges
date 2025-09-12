@@ -9,5 +9,5 @@
   "keywords": [],
   "author": "Hichxm",
   "license": "MIT",
-  "type": "module"
+  "type": "commonjs"
 }
