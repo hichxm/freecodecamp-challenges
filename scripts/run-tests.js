@@ -1,142 +1,181 @@
-const {readdir, readFile} = require('fs').promises;
-const {resolve, join} = require('path');
-const {pathToFileURL} = require('url');
+#!/usr/bin/env node
 
-const challengesDir = resolve('challenges');
+// Simple test runner for plain Node.js assert-style test files
+// - Discovers *.test.js files under ./challenges when no args are provided
+// - Or runs the files/directories passed as CLI args
+// - Executes each test file with `node <file>` in a child process
+// - Prints a concise PASS/FAIL summary and sets a proper exit code
 
-function createSoftAssert(collect) {
-    const realAssert = require('assert');
-    const wrappedMap = new WeakMap();
+const fs = require('fs');
+const path = require('path');
+const { spawnSync } = require('child_process');
 
-    const isAssertionError = (e) => e && (e instanceof realAssert.AssertionError || e.name === 'AssertionError');
+const ROOT = process.cwd();
+const CHALLENGES_DIR = path.join(ROOT, 'challenges');
 
-    const wrapFn = (fn, name) => {
-        return function wrapped(...args) {
-            try {
-                return fn.apply(this, args);
-            } catch (e) {
-                if (isAssertionError(e)) {
-                    collect({
-                        method: name,
-                        message: e.message,
-                        actual: e.actual,
-                        expected: e.expected,
-                        operator: e.operator,
-                        stack: e.stack
-                    });
-                    // Do not throw to allow remaining assertions to execute
-                    return;
-                }
-                // Non-assertion error: rethrow
-                throw e;
-            }
-        };
-    };
+// Basic coloring without dependencies
+const COLORS = {
+  reset: '\u001b[0m',
+  red: '\u001b[31m',
+  green: '\u001b[32m',
+  yellow: '\u001b[33m',
+  dim: '\u001b[2m',
+};
+const color = (c, s) => COLORS[c] + s + COLORS.reset;
 
-    const wrapObject = (src) => {
-        if (wrappedMap.has(src)) return wrappedMap.get(src);
-        // callable function version (assert(value[, message]))
-        const callable = wrapFn(src, 'assert');
-        wrappedMap.set(src, callable);
-        // Copy all props (convert accessors to data where needed)
-        for (const key of Object.getOwnPropertyNames(src)) {
-            const desc = Object.getOwnPropertyDescriptor(src, key);
-            if (!desc) continue;
-            let value = desc.value;
-            // Resolve accessor to actual value so we can wrap it
-            if (value === undefined && (desc.get || desc.set)) {
-                try { value = src[key]; } catch (_) {}
-            }
-            let newValue = value;
-            if (key === 'strict') {
-                // Ensure strict is fully wrapped (function with methods)
-                const strictSrc = value || src.strict; // fallback to live getter
-                if (strictSrc === src) {
-                    newValue = callable; // self-reference
-                } else {
-                    newValue = wrapObject(strictSrc);
-                }
-            } else if (typeof value === 'function') {
-                newValue = wrapFn(value, key);
-            }
-            try {
-                Object.defineProperty(callable, key, { configurable: true, enumerable: desc.enumerable, writable: true, value: newValue });
-            } catch (_) {
-                // ignore non-writable properties
-                try { callable[key] = newValue; } catch (_) {}
-            }
-        }
-        return callable;
-    };
-
-    return wrapObject(realAssert);
+function isTestFile(filePath) {
+  return filePath.endsWith('.test.js');
 }
 
-async function main() {
-    let failed = 0;
-    const files = (await readdir(challengesDir))
-        .filter(f => f.endsWith('.test.js'))
-        .sort();
-
-    if (files.length === 0) {
-        console.log('No test files found.');
-        return;
+function listFilesRecursively(startPath) {
+  const out = [];
+  const stack = [startPath];
+  while (stack.length) {
+    const current = stack.pop();
+    let stat;
+    try {
+      stat = fs.statSync(current);
+    } catch {
+      continue;
     }
 
-    for (const file of files) {
-        const url = pathToFileURL(join(challengesDir, file)).href;
-        const failures = [];
-        const softAssert = createSoftAssert((x) => failures.push(x));
-        const realRequire = require;
-        const sandboxRequire = (mod) => mod === 'assert' ? softAssert : realRequire(mod);
-        try {
-            const code = await readFile(new URL(url), 'utf8');
-            // Shadow require inside eval scope
-            {
-                const require = sandboxRequire;
-                eval(code);
-            }
-
-            if (failures.length > 0) {
-                const details = failures.map((f, i) => `  ${i + 1}) ${f.method}: ${f.message}` ).join('\n');
-                const err = new Error(`${failures.length} assertion(s) failed in ${file}:\n${details}`);
-                err.failures = failures;
-                throw err;
-            }
-
-            console.log(`PASS ${file}`);
-        } catch (err) {
-            failed++;
-            console.error(`FAIL ${file}`);
-            console.error(err && err.stack || err);
-            // If we captured detailed failures, also list them with stacks for clarity
-            if (err && err.failures && Array.isArray(err.failures)) {
-                for (const [i, f] of err.failures.entries()) {
-                    console.error(`\nFailure ${i + 1}: ${f.method} - ${f.message}`);
-                    if (f.operator !== undefined) console.error(`operator: ${f.operator}`);
-                    if (f.expected !== undefined || f.actual !== undefined) {
-                        try {
-                            const exp = typeof f.expected === 'string' ? f.expected : JSON.stringify(f.expected);
-                            const act = typeof f.actual === 'string' ? f.actual : JSON.stringify(f.actual);
-                            console.error(`expected: ${exp}`);
-                            console.error(`actual:   ${act}`);
-                        } catch (_) {}
-                    }
-                    if (f.stack) console.error(f.stack);
-                }
-            }
-        }
+    if (stat.isDirectory()) {
+      let entries = [];
+      try {
+        entries = fs.readdirSync(current);
+      } catch {
+        continue;
+      }
+      for (const e of entries) stack.push(path.join(current, e));
+    } else if (stat.isFile()) {
+      out.push(current);
     }
+  }
+  return out;
+}
 
-    if (failed > 0) {
-        console.error(`\n${failed} test file(s) failed.`);
-        process.exit(1);
+function resolveInputToTests(argPath) {
+  const full = path.isAbsolute(argPath) ? argPath : path.join(ROOT, argPath);
+  let stat;
+  try {
+    stat = fs.statSync(full);
+  } catch {
+    return [];
+  }
+  if (stat.isDirectory()) {
+    return listFilesRecursively(full).filter(isTestFile);
+  }
+  return isTestFile(full) ? [full] : [];
+}
+
+function discoverAllTests() {
+  // If the challenges directory doesn't exist, nothing to run
+  if (!fs.existsSync(CHALLENGES_DIR)) return [];
+  return listFilesRecursively(CHALLENGES_DIR)
+    .filter(isTestFile)
+    .sort((a, b) => a.localeCompare(b));
+}
+
+function formatDuration(ms) {
+  if (ms < 1000) return `${ms} ms`;
+  return `${(ms / 1000).toFixed(2)} s`;
+}
+
+function runOneTest(file) {
+  const started = process.hrtime.bigint();
+  const res = spawnSync(process.execPath, [file], {
+    cwd: ROOT,
+    encoding: 'utf8',
+    env: process.env,
+  });
+  const ended = process.hrtime.bigint();
+  const durationMs = Number(ended - started) / 1e6;
+
+  const passed = res.status === 0;
+  const output = (res.stdout || '') + (res.stderr || '');
+
+  return {
+    file,
+    passed,
+    status: res.status,
+    signal: res.signal,
+    durationMs,
+    output,
+    error: res.error,
+  };
+}
+
+function main() {
+  const args = process.argv.slice(2);
+  let files = [];
+
+  if (args.length > 0) {
+    for (const a of args) {
+      files.push(...resolveInputToTests(a));
+    }
+    // Remove duplicates and sort
+    files = Array.from(new Set(files)).sort((x, y) => x.localeCompare(y));
+  } else {
+    files = discoverAllTests();
+  }
+
+  if (files.length === 0) {
+    console.log(color('yellow', 'No test files found.'));
+    process.exit(0);
+  }
+
+  console.log(color('dim', `Running ${files.length} test file(s)...`));
+
+  let passedCount = 0;
+  let failedCount = 0;
+  const failures = [];
+  const suiteStart = Date.now();
+
+  for (const file of files) {
+    const relative = path.relative(ROOT, file);
+    const result = runOneTest(file);
+    const line = `${result.passed ? 'PASS' : 'FAIL'} ${relative} (${formatDuration(Math.round(result.durationMs))})`;
+
+    if (result.passed) {
+      passedCount += 1;
+      console.log(color('green', line));
     } else {
-        console.log(`\nAll ${files.length} test file(s) passed.`);
+      failedCount += 1;
+      console.log(color('red', line));
+      failures.push(result);
     }
+  }
+
+  const total = files.length;
+  const elapsed = Date.now() - suiteStart;
+
+  if (failures.length) {
+    console.log('\n' + color('red', 'Failed test output:'));
+    for (const f of failures) {
+      const rel = path.relative(ROOT, f.file);
+      console.log(color('red', `\n● ${rel}`));
+      if (f.output) {
+        const trimmed = f.output.trim().split(/\r?\n/).slice(0, 20).join('\n');
+        console.log(trimmed);
+      } else if (f.error) {
+        console.log(String(f.error));
+      } else {
+        console.log('(no output)');
+      }
+    }
+  }
+
+  console.log('\nSummary:');
+  const suitesSummary = `${passedCount} passed, ${failedCount} failed, ${total} total`;
+  const timeSummary = `Time: ${formatDuration(elapsed)}`;
+  if (failedCount === 0) {
+    console.log(color('green', `  Test Suites: ${suitesSummary}`));
+  } else {
+    console.log(color('red', `  Test Suites: ${suitesSummary}`));
+  }
+  console.log(`  ${timeSummary}`);
+
+  process.exit(failedCount === 0 ? 0 : 1);
 }
 
-main().catch(err => {
-    console.error('Test runner error:', err && err.stack || err);
-    process.exit(1);
-});
+main();
