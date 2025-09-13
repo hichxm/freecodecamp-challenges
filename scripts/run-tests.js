@@ -18,7 +18,7 @@ async function main() {
     for (const file of files) {
         const url = pathToFileURL(join(challengesDir, file)).href;
         try {
-            eval(await readFile(new URL(url).pathname, 'utf8'));
+            eval(await readFile(new URL(url), 'utf8'));
 
             console.log(`PASS ${file}`);
         } catch (err) {
