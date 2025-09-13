@@ -29,4 +29,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           check-latest: true
-      - run: npm run test
+      - run: node ./scripts/run-tests.js
