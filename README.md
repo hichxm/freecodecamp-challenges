@@ -49,6 +49,8 @@ npm test challenges/daily-YYYY-MM-DD.test.js
 | 14.x | [![Node.js CI 14.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-14.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-14.x.yaml) |
 | 13.x | [![Node.js CI 13.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-13.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-13.x.yaml) |
 | 12.x | [![Node.js CI 12.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-12.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-12.x.yaml) |
+| 11.x | [![Node.js CI 11.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-11.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-11.x.yaml) |
+| 10.x | [![Node.js CI 10.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-10.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-10.x.yaml) |
 
 
 ## Challenges

@@ -11,4 +11,4 @@ jobs:
   tests:
     uses: hichxm/freecodecamp-challenges/.github/workflows/tests-reusable.yaml@main
     with:
-      node-version: '["23.x"]'
+      node-version: '["23.x", "23-nightly"]'
