@@ -1,0 +1,14 @@
+# This workflow delegates to a reusable workflow for running tests
+name: Node.js CI LTS Gallium
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  tests:
+    uses: hichxm/freecodecamp-challenges/.github/workflows/tests-reusable.yaml@main
+    with:
+      node-version: '["lts/gallium"]'

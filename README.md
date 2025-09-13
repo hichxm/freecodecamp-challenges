@@ -34,24 +34,24 @@ npm test challenges/daily-YYYY-MM-DD.test.js
 
 ## Node Version Matrix
 
-| Node Version | Status |
-|--------------|--------|
-| 25.x | [![Node.js CI 25.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-25.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-25.x.yaml) |
-| 24.x | [![Node.js CI 24.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-24.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-24.x.yaml) |
-| 23.x | [![Node.js CI 23.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-23.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-23.x.yaml) |
-| 22.x | [![Node.js CI 22.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-22.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-22.x.yaml) |
-| 21.x | [![Node.js CI 21.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-21.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-21.x.yaml) |
-| 20.x | [![Node.js CI 20.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-20.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-20.x.yaml) |
-| 19.x | [![Node.js CI 19.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-19.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-19.x.yaml) |
-| 18.x | [![Node.js CI 18.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-18.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-18.x.yaml) |
-| 17.x | [![Node.js CI 17.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-17.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-17.x.yaml) |
-| 16.x | [![Node.js CI 16.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-16.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-16.x.yaml) |
-| 15.x | [![Node.js CI 15.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-15.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-15.x.yaml) |
-| 14.x | [![Node.js CI 14.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-14.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-14.x.yaml) |
-| 13.x | [![Node.js CI 13.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-13.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-13.x.yaml) |
-| 12.x | [![Node.js CI 12.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-12.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-12.x.yaml) |
-| 11.x | [![Node.js CI 11.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-11.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-11.x.yaml) |
-| 10.x | [![Node.js CI 10.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-10.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-10.x.yaml) |
+| Node Version | LTS | Status |
+|--------------|-----|--------|
+| 25.x | - | [![Node.js CI 25.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-25.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-25.x.yaml) |
+| 24.x | - | [![Node.js CI 24.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-24.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-24.x.yaml) |
+| 23.x | - | [![Node.js CI 23.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-23.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-23.x.yaml) |
+| 22.x | Jod | [![Node.js CI 22.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-22.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-22.x.yaml) [![Node.js CI LTS Jod](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-jod.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-jod.yaml) |
+| 21.x | - | [![Node.js CI 21.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-21.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-21.x.yaml) |
+| 20.x | Iron | [![Node.js CI 20.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-20.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-20.x.yaml) [![Node.js CI LTS Iron](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-iron.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-iron.yaml) |
+| 19.x | - | [![Node.js CI 19.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-19.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-19.x.yaml) |
+| 18.x | Hydrogen | [![Node.js CI 18.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-18.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-18.x.yaml) [![Node.js CI LTS Hydrogen](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-hydrogen.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-hydrogen.yaml) |
+| 17.x | - | [![Node.js CI 17.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-17.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-17.x.yaml) |
+| 16.x | Gallium | [![Node.js CI 16.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-16.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-16.x.yaml) [![Node.js CI LTS Gallium](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-gallium.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-gallium.yaml) |
+| 15.x | - | [![Node.js CI 15.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-15.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-15.x.yaml) |
+| 14.x | Fermium | [![Node.js CI 14.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-14.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-14.x.yaml) [![Node.js CI LTS Fermium](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-fermium.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-fermium.yaml) |
+| 13.x | - | [![Node.js CI 13.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-13.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-13.x.yaml) |
+| 12.x | Erbium | [![Node.js CI 12.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-12.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-12.x.yaml) [![Node.js CI LTS Erbium](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-erbium.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-erbium.yaml) |
+| 11.x | - | [![Node.js CI 11.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-11.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-11.x.yaml) |
+| 10.x | Dubnium | [![Node.js CI 10.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-10.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-10.x.yaml) [![Node.js CI LTS Dubnium](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-dubnium.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-lts-dubnium.yaml) |
 
 
 ## Challenges
@@ -76,4 +76,4 @@ npm test challenges/daily-YYYY-MM-DD.test.js
 ## Notes
 
 - This README is auto-generated by `scripts/generate-readme.js`.
-- The Node version matrix is derived from `.github/workflows` files.
+- The Node version matrix is derived from `.github/workflows` files and combines numeric and LTS workflows.
