@@ -36,6 +36,7 @@ npm test challenges/daily-YYYY-MM-DD.test.js
 
 | Node Version | Status |
 |--------------|--------|
+| 25.x | [![Node.js CI 25.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-25.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-25.x.yaml) |
 | 24.x | [![Node.js CI 24.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-24.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-24.x.yaml) |
 | 23.x | [![Node.js CI 23.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-23.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-23.x.yaml) |
 | 22.x | [![Node.js CI 22.x](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-22.x.yaml/badge.svg)](https://github.com/hichxm/freecodecamp-challenges/actions/workflows/test-22.x.yaml) |
