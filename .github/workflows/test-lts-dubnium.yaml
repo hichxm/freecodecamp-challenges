@@ -11,4 +11,5 @@ jobs:
   tests:
     uses: hichxm/freecodecamp-challenges/.github/workflows/tests-reusable.yaml@main
     with:
+      os-version: '["ubuntu-latest", "windows-latest"]'
       node-version: '["lts/dubnium"]'
