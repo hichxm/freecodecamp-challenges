@@ -1,4 +1,4 @@
-const {readdir, readFileSync} = require('fs').promises;
+const {readdir, readFile} = require('fs').promises;
 const {resolve, join} = require('path');
 const {pathToFileURL} = require('url');
 
@@ -18,7 +18,7 @@ async function main() {
     for (const file of files) {
         const url = pathToFileURL(join(challengesDir, file)).href;
         try {
-            eval(await readFileSync(new URL(url).pathname, 'utf8'));
+            eval(await readFile(new URL(url).pathname, 'utf8'));
 
             console.log(`PASS ${file}`);
         } catch (err) {
