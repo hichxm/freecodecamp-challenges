@@ -1,5 +1,5 @@
 # This workflow delegates to a reusable workflow for running tests
-name: Node.js CI 24.x
+name: Node.js CI 25.x
 
 on:
   push:
@@ -11,4 +11,4 @@ jobs:
   tests:
     uses: hichxm/freecodecamp-challenges/.github/workflows/tests-reusable.yaml@main
     with:
-      node-version: '["25.x", "25-nightly"]'
+      node-version: '["25-nightly"]'
