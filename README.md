@@ -59,6 +59,9 @@ npm test challenges/daily-YYYY-MM-DD.test.js
 | Date       | Test File                                                       |
 |------------|-----------------------------------------------------------------|
 | 2025-08-11 | [daily-2025-08-11.test.js](challenges/daily-2025-08-11.test.js) |
+| 2025-08-12 | [daily-2025-08-12.test.js](challenges/daily-2025-08-12.test.js) |
+| 2025-08-20 | [daily-2025-08-20.test.js](challenges/daily-2025-08-20.test.js) |
+| 2025-08-21 | [daily-2025-08-21.test.js](challenges/daily-2025-08-21.test.js) |
 | 2025-09-01 | [daily-2025-09-01.test.js](challenges/daily-2025-09-01.test.js) |
 | 2025-09-03 | [daily-2025-09-03.test.js](challenges/daily-2025-09-03.test.js) |
 | 2025-09-04 | [daily-2025-09-04.test.js](challenges/daily-2025-09-04.test.js) |
