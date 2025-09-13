@@ -1,0 +1,15 @@
+# This workflow delegates to a reusable workflow for running tests
+name: Node.js CI 11.x
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  tests:
+    uses: hichxm/freecodecamp-challenges/.github/workflows/tests-reusable.yaml@main
+    with:
+      os-version: '["ubuntu-latest", "windows-latest"]'
+      node-version: '["11.x"]'
